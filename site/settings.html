@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bavarea</title>
+    <style>  
+    
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-image: url('https://64.media.tumblr.com/2df67fe7bdbba84c88cdbbdf84fd2743/tumblr_nqgvxz92HC1s85u2fo1_500.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #ffffff;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    position: relative; /* Added position relative to enable absolute positioning inside */
+    
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.container {
+    z-index: 10;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    margin: auto;
+}
+
+.login-form {
+    background-color: rgba(28, 28, 30, 0.8);
+    padding: 2em;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.login-form h2 {
+    margin-bottom: 1em;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1em;
+    border-radius: 5px;
+    border: 1px solid #3a3a3c;
+    background-color: #2a2a2d;
+    color: #d1d1d1;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #5e9cff;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #0a84ff;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.submit-button:hover {
+    background-color: #007aff;
+}
+
+.console-box {
+    background-color: rgba(28, 28, 30, 0.8);
+    color: #8e8e93;
+    padding: 1em;
+    margin-top: 2em;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    overflow: auto;
+    height: 170px;
+}
+
+
+
+.custom-box h2 {
+    color: white; /* Change to the color you want */
+}
+
+.custom-box p {
+    color: white; /* Change to the color you want */
+}
+
+.style-switch-button {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 30;
+    background-color: transparent;
+    color: white;
+    text-shadow: 0 0 10px white, 0 0 20px white;
+    border: none;
+    cursor: pointer;
+}
+
+.invisible-button {
+    background-color: transparent;
+    color: white;
+    text-shadow: 0 0 10px white, 0 0 20px white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+
+
+        .style1 {
+            font-family: 'Times New Roman', serif;
+            color: #d1d1d1;
+            
+        }
+
+       
+
+        /* Additional style for style1 */
+        .style1-new {
+            font-family: Arial, sans-serif;
+            background-color: #212121;
+            position: relative;
+        }
+
+        .style1-new .console-box {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 400px;
+            height: calc(1.2em * 10); /* Assuming line-height to be 1.2 */
+            background-color: #303030;
+            color: #ffffff;
+            padding: 5px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow: hidden;
+        }
+
+        .style1-new .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .style1-new .login-form {
+            width: 300px;
+            background-color: #303030;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.1);
+        }
+
+        .style1-new .login-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .style1-new .input-field {
+            width: calc(100% - 20px); /* Subtract padding */
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #424242;
+            color: #ffffff;
+        }
+
+        .style1-new .submit-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+		 .style1-new .console-box {
+    background-color: rgba(28, 28, 30, 0.8);
+    color: #8e8e93;
+    padding: 1em;
+    position: fixed;
+    bottom: 10px; /* Adjust the distance from the bottom */
+    left: 10px; /* Adjust the distance from the left */
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    overflow: auto;
+    height: 170px;
+}
+
+.style1-new .custom-box1 {
+    background-color: #2c2f33; /* Dark grey background, not invisible */
+    color: white; /* Set the text color to white */
+    padding: 30px;
+    border-radius: 15px;
+    position: absolute;
+    bottom: -120px; /* This positions the box above the bottom of the screen */
+    left: -170px; /* Start off-screen to the left. Adjust as needed based on the width of your .custom-box1 */
+    z-index: 100; /* Ensure it's above other content */
+    max-width: 200px; /* Adjust as needed */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    backdrop-filter: blur(30px); /* Increased blur effect for the background */
+    word-wrap: break-word; /* This will break long words if necessary */
+    box-sizing: border-box; /* This ensures padding is included in the width */
+    text-shadow: 0 0 10px Gray, 0 0 20px Gray; /* Glowing effect for the text */
+    transition: left 0.5s ease-in-out; /* Smooth transition for sliding effect */
+}
+
+.style1-new:hover .custom-box1 {
+    left: 20px; /* Slide in to 20px from the left when .style1-new is hovered */
+}
+
+
+.custom-box h2 {
+    color: white; /* Change to the color you want */
+}
+
+.custom-box p {
+    color: white; /* Change to the color you want */
+}
+
+
+
+
+body {
+    background-color: black; /* Set the background color to black */
+    /* ... existing styles ... */
+}
+
+#slideHandle {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 100px;
+    background-color: #333;
+    border-radius: 5px 0 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, right 0.3s;
+    z-index: 40; /* Increase the z-index */
+}
+
+#slideHandle:hover {
+    background-color: #555; /* Color on hover */
+    right: 5px; /* Slightly moves to the left when hovered */
+}
+
+.container-move-right {
+    transform: translateX(250px); /* Adjust as necessary */
+    transition: transform 0.5s ease-in-out;
+}
+
+
+body {
+    background-color: black; /* Set the background color to black */
+    /* ... existing styles ... */
+}
+
+#slideHandle {
+    position: fixed;
+    top: 50%; /* Center vertically */
+    right: 0;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 100px;
+    background-color: #333; /* Initial color */
+    border-radius: 5px 0 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, right 0.3s;
+}
+
+#slideHandle:hover {
+    background-color: #555; /* Color on hover */
+    right: 5px; /* Slightly moves to the left when hovered */
+}
+
+.container-move-right {
+    transform: translateX(250px); /* Adjust as necessary */
+    transition: transform 0.5s ease-in-out;
+}
+
+
+/* Additional CSS */
+.hidden {
+    display: none; /* Make the container invisible by default */
+}
+
+#textBoxContainer {
+    display: bl; /* Change from 'none' to 'block' to make it visible */
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 30%; /* Center horizontally */
+    right: -100%;
+    transform: translate(-50%, -50%);
+    width: 400px; /* Set both width and height to the same value for a square */
+    height: 500px; /* Set both width and height to the same value for a square */
+    padding: 20px;
+    border: 3px solid #444;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    color: #000;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    text-align: center;
+    box-sizing: border-box;
+    backdrop-filter: blur(12px); /* Adjust the pixel value to control the blur intensity */
+    -webkit-backdrop-filter: blur(12px); /* For Safari compatibility */
+    transition: right 0.5s ease-in-out;
+}
+
+#textBoxContainer a {
+        color: white;
+        right: -100%; /* Initially, position it outside the viewport */
+    transition: right 0.5s ease-in-out; /* Add a transition for the 'right' property */
+}
+
+    /* Add a text-shadow when hovering over the links */
+    #textBoxContainer a:hover {
+        text-shadow: 0 0 10px white, 0 0 20px white;
+    }
+
+/* Adjust the right transform value based on the width of the text box container */
+.container-move-right #textBoxContainer {
+    right: 0; /* Move it to the right to make it visible */
+    transition: right 0.5s ease-in-out; /* Add a transition for the 'right' property */
+}
+
+.container {
+    z-index: 10;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    margin: auto;
+    transition: transform 0.5s ease-in-out; /* Add this line for smooth transition */
+}
+
+#buttonContainer {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 30;
+}
+
+
+    </style>
+</head>
+<body>
+  
+
+<div class="style1-new">
+    <!-- Custom text box at bottom left -->
+    <div class="custom-box1">
+        <h2>Bins</h2>
+        <p>Sellix:4833160267 <br> 4207670274 <br>
+           <br> good bins:<br>4147202546 <br> 4266841656 <br> 435546026 <br> 
+            <br>Another bins : 459816512 <br> 421747000 <br> 40234706</p> 
+    </div>
+</div>
+
+<!-- Hidden Text Box Container -->
+
+<!-- Showcase Text Box Container -->
+<div id="textBoxContainer" class="hidden">
+    <!-- Add your content here -->
+    <p id="showcaseText" style="color: white; text-shadow: 0 0 10px white, 0 0 20px white;">Stripe sites</p>
+    <!-- Make the links clickable and open in a new tab using <a> tags with target="_blank" -->
+    <p><a href="https://requiem.mysellix.io" target="_blank">https://requiem.mysellix.io</a></p>
+    <p><a href="https://www.fortnitestwitems.com" target="_blank">https://www.fortnitestwitems.com</a></p>
+    <p><a href="https://cryogames.net" target="_blank">https://cryogames.net</a></p>
+    <p><a href="https://myaccountstore.com" target="_blank">https://myaccountstore.com</a></p>
+    <p><a href="https://civilmdc.com/" target="_blank">https://civilmdc.com/</a></p>
+    <p><a href="https://civilmdc.mysellix.io/" target="_blank">https://civilmdc.mysellix.io/</a></p>
+    <p><a href="https://fivesnailshop.mysellix.io" target="_blank">https://fivesnailshop.mysellix.io</a></p>
+    <p><a href="https://fun4cheats.com/en/buy/rust-account/" target="_blank">https://fun4cheats.com</a></p>
+    <p><a href="https://tgmodz.com" target="_blank">https://tgmodz.com</a></p>
+    <p><a href="https://ezmod.vip/" target="_blank">https://ezmod.vip/</a></p> <!-- Added link to Ezmod VIP -->
+</div>
+
+</div>
+
+
+<div id="slideHandle"></div>
+
+    <!-- Content with the additional style for style1 -->
+    <div class="style1 style1-new">
+        <!-- Content here -->
+    </div>
+    
+    <div class="container">
+        <form class="login-form" id="settingsForm">
+            <h2>Settings</h2>
+            <input type="text" class="input-field" id="proxy" placeholder="Proxy" value="PROXYVAL"/>
+            <input type="text" class="input-field" id="bin" placeholder="BIN" value="BINVAL"/>
+            <button type="submit" class="submit-button">Save</button>
+        </form>
+    </form>
+    <div class="console-box" id="consoleBox">
+    </div>
+    <div style="position: fixed; bottom: 10px; right: 10px; z-index: 30;">
+        <input type="file" id="backgroundInput" style="display: none;" accept="image/*"/>
+        <button onclick="document.getElementById('backgroundInput').click();" class="invisible-button">Change Background</button>
+        <button onclick="resetBackground();" class="invisible-button">Reset Background</button>
+        <button id="styleSwitchButton" class="style-switch-button invisible-button">Change Style</button>
+    </div>
+
+
+	
+			<script>
+				let currentLogs = [];
+
+				async function updateLogs() {
+					try {
+						const response = await fetch('/logs');
+						const logs = await response.json();
+
+						if (JSON.stringify(logs) !== JSON.stringify(currentLogs)) {
+							consoleBox.innerHTML = '';
+
+							logs.forEach((log, index) => {
+								let firstColon = log.indexOf(':');
+								let secondColon = log.indexOf(':', firstColon + 1);
+								if (firstColon !== -1 && secondColon !== -1) {
+									let color = log.substring(0, firstColon);
+									let glow = log.substring(firstColon + 1, secondColon);
+									let text = log.substring(secondColon + 1);
+									let logElement = document.createElement("div");
+									logElement.style.color = color;
+									logElement.style.textShadow = `${glow} 0px 0px 15px`;
+									logElement.textContent = text;
+									consoleBox.appendChild(logElement);
+								} else {
+									<!-- consoleBox.innerHTML += `${log}<br/>`; -->
+								}
+							});
+
+							currentLogs = logs;
+						}
+					} catch (error) {
+						console.error('Failed to fetch logs:', error);
+					}
+				}
+
+				updateLogs()
+
+				setInterval(updateLogs, 1000);
+
+                
+				document.getElementById("settingsForm").addEventListener("submit", async function (event) {
+						event.preventDefault();
+						const proxy = document.getElementById("proxy").value;
+						const bin = document.getElementById("bin").value;
+						const settings = { proxy: proxy, bin: bin };
+
+						const response = await fetch("/saveSettings", {
+								method: "POST",
+								headers: {
+										"Content-Type": "application/json",
+								},
+								body: JSON.stringify(settings),
+						});
+
+						const responseBody = await response.text();
+
+						if (responseBody === "OK") {
+								document.location.reload();
+						}
+				});
+	
+
+
+                
+
+
+                
+	    
+        // Original background URL
+        const originalBackground = 'https://64.media.tumblr.com/2df67fe7bdbba84c88cdbbdf84fd2743/tumblr_nqgvxz92HC1s85u2fo1_500.gif';
+
+        // Function to change the background image
+        function changeBackground(imageData) {
+            document.body.style.backgroundImage = `url('${imageData}')`;
+            localStorage.setItem('background', imageData); // Save image data to local storage
+        }
+
+
+        
+        // Function to reset the background to the original
+        function resetBackground() {
+            localStorage.removeItem('background'); // Clear the background from local storage
+            document.body.style.backgroundImage = `url('${originalBackground}')`;
+        }
+
+        // Script to change background image
+        document.getElementById('backgroundInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    changeBackground(e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Load the background image from local storage on page load
+        window.addEventListener('load', function() {
+            const storedBackground = localStorage.getItem('background');
+            if (storedBackground) {
+                changeBackground(storedBackground);
+            } else {
+                resetBackground(); // Reset to original if no image is stored
+            }
+        });
+ // ... existing scripts ...
+
+ document.addEventListener('DOMContentLoaded', function() {
+    const slideHandle = document.getElementById('slideHandle');
+    const container = document.querySelector('.container');
+    const textBoxContainer = document.getElementById('textBoxContainer'); // Get the text box container
+
+    slideHandle.addEventListener('click', function() {
+        container.classList.toggle('container-move-right');
+        textBoxContainer.classList.toggle('hidden'); // Toggle visibility of the text box container
+    });
+});
+
+document.getElementById('slideHandle').addEventListener('click', function() {
+    var textBoxContainer = document.getElementById('textBoxContainer');
+    // This checks if the container is already displayed or not.
+    if (textBoxContainer.style.display === "block") {
+        textBoxContainer.style.display = "none"; // Hide the container
+    } else {
+        textBoxContainer.style.display = "block"; // Show the container
+    }
+});
+
+
+
+
+          // ... existing scripts ...
+
+
+// Wait for the DOM to fully load
+document.addEventListener('DOMContentLoaded', function() {
+        var customBox = document.querySelector('.custom-box'); // Get the custom box
+
+        // Function to slide the box in
+        function slideIn() {
+            customBox.style.left = '20px'; // Adjust as necessary
+        }
+
+        // Function to slide the box out
+        function slideOut() {
+            customBox.style.left = '-500px'; // Adjust as necessary
+        }
+
+        // Event listeners for mouse enter and leave
+        customBox.addEventListener('mouseenter', slideIn);
+        customBox.addEventListener('mouseleave', slideOut);
+    });
+
+          
+// Define the main style (the default style)
+const mainStyle = 'main-style'; // Replace with your main style class name
+
+// Variable to track the current style
+let currentStyle = mainStyle;
+
+function switchStyle() {
+    const body = document.body;
+
+    if (currentStyle === mainStyle) {
+        body.className = 'style1';
+        currentStyle = 'style1';
+    } else if (currentStyle === 'style1') {
+        body.className = 'style1-new'; // Apply the new style
+        currentStyle = 'style1-new';
+    } else if (currentStyle === 'style1-new') {
+        body.className = mainStyle;
+        currentStyle = mainStyle;
+    } else {
+        body.className = mainStyle;
+        currentStyle = mainStyle;
+    }
+}
+
+
+
+// Add an event listener to the "Change Style" button
+document.getElementById('styleSwitchButton').addEventListener('click', switchStyle);
+
+function switchStyle() {
+    const body = document.body;
+
+       if (currentStyle === mainStyle) {
+        body.className = 'style1-new';
+        currentStyle = 'style1-new';
+    } else {
+        body.className = mainStyle;
+        currentStyle = mainStyle;
+    }
+
+
+
+    // Save the selected style to local storage
+    localStorage.setItem('selectedStyle', currentStyle);
+    localStorage.setItem('selectedStyle', currentStyle);
+}
+
+// Add an event listener to the "Change Style" button
+document.getElementById('styleSwitchButton').addEventListener('click', switchStyle);
+
+// Load the selected style from local storage on page load
+window.addEventListener('load', function () {
+    const storedStyle = localStorage.getItem('selectedStyle');
+    if (storedStyle) {
+        // Apply the stored style
+        const body = document.body;
+        body.className = storedStyle;
+        currentStyle = storedStyle;
+    } else {
+        // If no style is stored, apply the main style
+        switchStyle();
+    }
+});
+
+    </script>
+</body>
+</html>
